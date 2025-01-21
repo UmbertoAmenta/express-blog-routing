@@ -3,16 +3,14 @@ const app = express()
 const port = 3000
 
 const postsData = require("./data/posts.js")
+const postsRouter = require("./routers/posts.js")
 
 app.use(express.static("pubblic"))
+app.use("/posts", postsRouter)
 
+// Server
 app.get("/", (req, res) => {
-  res.send("Server del blog")
-    res.send(req.params)
-})
-
-app.get("/menu", (req, res) => {
-    res.json(postsData)
+    res.send("Server del blog")
 })
 
 app.listen(port, () => {
