@@ -1,16 +1,20 @@
 const express = require("express")
-
+const postsData = require("../data/posts")
 const router = express.Router()
 
 // Index
 router.get("/", (req, res) => {
-    res.send("Ricettario")
-    // res.json(postsData)
+    // res.send("Ricettario")
+    res.json(postsData)
 })
 
 // Show
 router.get("/:id", (req, res) => {
-    res.send(`Ricetta: ${req.params.id}`)
+    // res.send(`Ricetta: ${req.params.id}`)
+    const postSelected = postsData.find(function (elm) {
+        return elm.id == req.params.id
+    })
+    res.json(postSelected)
 })
 
 // Store
@@ -20,7 +24,7 @@ router.post("/", (req, res) => {
 
 // Update
 router.put("/:id", (req, res) => {
-    res.send(`Modifica integrale dela ricetta n° ${req.params.id}`)
+    res.send(`Modifica integrale della ricetta n° ${req.params.id}`)
 })
 
 // Modify
